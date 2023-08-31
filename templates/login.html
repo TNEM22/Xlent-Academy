@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Xlent Academy-Login{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+{% endblock %}
+
+{% block content %}
+<h1 style="display: none;">Xlent Academy</h1>
+<div class="logo">
+    <span class="X">X</span><span>lent Academy</span>
+</div>
+<div class="container mt-5">
+    <form id="loginForm" action="/login" method="post">
+        <div class="mb-cus">
+            <label for="username" class="form-label">Username</label>
+            <label for="username" class="msg-alert ms-md-4"><strong>{{warnMessageusr}}</strong></label>
+            <input type="text" class="form-control" id="username" name="username" aria-describedby="username"
+                placeholder="Username" required autocomplete="off">
+        </div>
+        <div class="mb-cus passwordcustom">
+            <label for="password" class="form-label">Password</label>
+            <label for="password" class="msg-alert ms-md-4"><strong>{{warnMessagepwd}}</strong></label>
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="toggle-password" value=""
+                        aria-label="Checkbox for following text input">
+                </div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    autocomplete="off">
+            </div>
+        </div>
+        <button type="button" class="btn btn-warning btn-lg" id="loginButton">Login</button>
+    </form>
+</div>
+
+
+<script>
+    $('#loginButton').click(someFunctionForLogin);
+    function someFunctionForLogin() {
+        $('#loginForm').submit();
+    }
+
+
+    const password = document.getElementById("password");
+    const togglePassword = document.getElementById("toggle-password");
+
+    togglePassword.addEventListener("click", toggleClicked);
+    function toggleClicked() {
+        if (this.checked) {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    }
+    window.history.forward();
+    function noBack() {
+        window.history.forward();
+    }
+</script>
+{% endblock %}

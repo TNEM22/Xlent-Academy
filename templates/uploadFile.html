@@ -1,0 +1,98 @@
+{% extends 'baseFile.html' %}
+{% block title %}Upload File{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/uploadFile.css') }}" />
+{% endblock %}
+{% block baseTitle %}Upload Files{% endblock %}
+{% block baseFileContent %}
+<div id="uploading">
+    <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <!-- <div>(<span id="percent"></span>%)Uploading...</div> -->
+    <div>Uploading...</div>
+</div>
+<span class="content--text">Drop file here or click to upload.</span>
+<!-- <div class="rem">
+    <div class="removeFile" onclick="removeFile()">X</div>
+</div> -->
+<input type="file" name="myFile" id="file" class="content--input">
+{% endblock %}
+{% block baseFileOperate %}
+<div class="form-floating">
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+        style="height: 100px"></textarea>
+    <label for="floatingTextarea2">Title</label>
+</div>
+<div class="opt">
+    <div class="std">
+        <label for="std">STD:</label>
+        <select name="std" id="std">
+            {% for i in range(5, 13) %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="sub">
+        <label for="sub">Subject:</label>
+        <select name="sub" id="sub">
+            <option value="Mathematics">Mathematics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Physics">Physics</option>
+            <option value="History">History</option>
+            <option value="Geography">Geography</option>
+            <option value="Civics">Civics</option>
+        </select>
+    </div>
+</div>
+<div class="btn">
+    <div class="up">
+        <button type="button" id="uploadButton" class="btn btn-success" onclick="upload()">Upload</button>
+    </div>
+    <div class="del">
+        <button type="button" id="delete" style="visibility: hidden;" class="btn btn-danger"
+            onclick="removeFile()">Remove</button>
+    </div>
+</div>
+<div class="ad">
+    <div class="adtxt">AD space</div>
+    <div class="adcontent">
+        <div class="app">
+            <img width="200px" height="200px" src="{{ url_for('static', filename='img/app_icon.png') }}"
+                alt="Xlent Academy" />
+            <p>Xlent Academy</p>
+        </div>
+        <div class="getApp">
+            <p>Get our
+                <a href="https://mega.nz/file/unIyjbjT#r1bL5-u3EBmzuUPbeVvwJAGhFvvrCw41Xp3dsVwei2A"
+                    target="_blank">App</a>
+                for better experience in your android device.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block belowBody %}
+<script>
+    document.getElementById("uploading").style.display = 'none';
+    $(window).on('load', function () {
+        $('#loading').hide();
+    });
+    var goBack = document.getElementById("goBack");
+    var form = document.getElementById('myForm');
+    function logClick() {
+        goBack.style.borderRadius = '50%';
+        goBack.style.backgroundColor = 'red';
+        form.submit();
+    }
+</script>
+<script src="{{ url_for('static', filename='js/uploadFile.js') }}"></script>
+{% endblock %}

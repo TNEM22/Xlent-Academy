@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="loading">
+    <div id="loading-image" class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>Loading...</div>
+</div>
+<div class="cupboard">
+    <div class="pdf">
+        <div class="goBack" onclick="logClick()">
+            <img id="goBack" src="https://img.icons8.com/plasticine/82/000000/circled-left.png" />
+        </div>
+        <form action="/nu" method="post" id='myForm'>
+            <input type="hidden" id="logback" name="logback" value="yes">
+        </form>
+        <div class="content">
+            {% block baseFileContent %}{% endblock %}
+        </div>
+    </div>
+    <div class="operate">
+        <div class="title">{% block baseTitle %}{% endblock %}</div>
+        {% block baseFileOperate %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

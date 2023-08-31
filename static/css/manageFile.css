@@ -1,0 +1,218 @@
+.div-container {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    /* margin: 25px; */
+}
+.title {
+    word-spacing: 6px;
+    flex: 0 1 auto;
+    color: white;
+    font-family: 'Rampart One', cursive;
+    font-size: 42px;
+    font-weight: bolder;
+}
+.uploadFile {
+    color: white;
+    font-family: 'Rampart One', cursive;
+    font-size: 22px;
+    font-weight: bolder;
+    background-color: cadetblue;
+    padding: 5px;
+    cursor: pointer;
+}
+.uploadFile:active {
+    color: black;
+}
+.uploadFile:active span {
+    background-color: white;
+}
+.uploadFile span{
+    background-color: green;
+    border-radius: 50%;
+}
+.logout {
+    cursor: pointer;
+    right: 30px;
+    top: 20px;
+    position: absolute;
+}
+
+.content-box {
+    border: 3px black solid;
+    display: flex;
+    flex: 1 0 auto;
+    margin-top: 3px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+.content-box .folders {
+    padding: 10px;
+    height: 100%;
+    width: 20%;
+}
+.content-box .folders .item-cus {
+    padding: 5px;
+    margin: 3px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 3px;
+    width: 100% !important;
+    text-align: left !important;
+    font-size: 25px;
+}
+.content-box .folders .item-cus:hover {
+    background-color: darkgoldenrod !important;
+    color: white !important;
+}
+
+
+.content-box hr {
+    color:black;
+    margin: 0;
+    width: 3px;
+    height: 100%;
+}
+.content-box .content-main {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.content-box .ctx-title {
+    top: 0;
+    font-size: 20px;
+    font-weight: bolder;
+    height: fit-content;
+    width: 100%;
+}
+.content-box .ctx-title span {
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 7px;
+    margin-bottom: 0;
+}
+.content-box .ctx-title hr {
+    color: black;
+    height: 3px !important;
+    margin: 0;
+    width: 100%;
+}
+.content-box .file-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: inline-block;
+    padding: 20px;
+    width: 100%;
+    height: 520px;
+}
+.file-item {
+    padding: 10px;
+    font-size: 25px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 30px;
+    cursor: pointer;
+    border: 1px solid #77aaff;
+    box-shadow:  -1px 1px #77aaff,
+         -2px 2px #77aaff,
+         -3px 3px #77aaff,
+         -4px 4px #77aaff,
+         -5px 5px #77aaff;
+}
+.file-item:active {
+    border: 1px solid whitesmoke !important;
+    box-shadow:  -1px 1px whitesmoke,
+         -2px 2px whitesmoke,
+         -3px 3px whitesmoke,
+         -4px 4px whitesmoke,
+         -5px 5px whitesmoke !important;
+    background-color: #77aaff !important;
+    color: white !important;
+}
+
+
+
+
+
+#loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    font-size: 30px;
+    font-weight: 900;
+    color: black;
+}
+#loading-image {
+    opacity: 1 !important;
+    z-index: 100;
+}
+
+
+
+/* Custom Loader */
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: black;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+}

@@ -1,0 +1,101 @@
+{% extends 'baseFile.html' %}
+{% block title %}Update File{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/uploadFile.css') }}" />
+{% endblock %}
+{% block baseTitle %}Update Files{% endblock %}
+{% block baseFileContent %}
+<!-- <div class="content"><iframe src="https://docs.google.com/gview?embedded=true&url={{fileurl}}" -->
+<!-- <div class="content"><iframe
+                src="https://firebasestorage.googleapis.com/v0/b/xlent-academy.appspot.com/o/uploadFiles%2F5%2FChemistry%2FFile_1635581947657.pdf" -->
+<!-- <div class="content"><iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url={{fileurl}}"
+                frameborder="0"></iframe></div> -->
+<!-- <embed id="pdf" src="{{fileurl}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" frameBorder="0" -->
+<embed id="pdf" src="{{fileurl}}" type="application/pdf" frameBorder="0" scrolling="auto" height="100%"
+    width="100%"></embed>
+{% endblock %}
+{% block baseFileOperate %}
+<form action="/manageFiles" method="post" id="deleted">
+    <input type="hidden" value="{{key}}" id="key">
+    <input type="hidden" value="{{fileurl}}" id="fileurl">
+</form>
+<div class="form-floating">
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+        style="height: 100px">{{filename}}</textarea>
+    <label for="floatingTextarea2">Title</label>
+</div>
+<div class="opt">
+    <div class="std">
+        <label for="std">STD:</label>
+        <select name="std" id="std">
+            {% for i in range(5, 13) %}
+            <option value="{{i}}" {% if std==i %}selected{% endif %}>{{i}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="sub">
+        <label for="sub">Subject:</label>
+        <select name="sub" id="sub">
+            {% for subject in subList %}
+            <option value="{{subject}}" {% if sub==subject %}selected{% endif %}>{{subject}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+<form style="display: none;">
+    <input type="hidden" value="{{sub}}" id="subject">
+    <input type="hidden" value="{{std}}" id="standard">
+</form>
+<div class="btn">
+    <div class="up">
+        <button type="button" id="uploadButton" class="btn btn-success" onclick="updateFile()">Update</button>
+    </div>
+    <div class="del">
+        <button type="button" id="delete" class="btn btn-danger" onclick="deleteFile()">Delete</button>
+    </div>
+</div>
+<div class="ad">
+    <div class="adtxt">AD space</div>
+    <div class="adcontent">
+        <div class="app">
+            <img width="200px" height="200px" src="{{ url_for('static', filename='img/app_icon.png') }}"
+                alt="Xlent Academy" />
+            <p>Xlent Academy</p>
+        </div>
+        <div class="getApp">
+            <p>Get our
+                <a href="https://mega.nz/file/unIyjbjT#r1bL5-u3EBmzuUPbeVvwJAGhFvvrCw41Xp3dsVwei2A"
+                    target="_blank">App</a>
+                for better experience in your android device.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="deleting">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>Deleting...</div>
+</div>
+{% endblock %}
+{% block belowBody %}
+<script>
+    document.getElementById("deleting").style.display = 'none';
+    $('#pdf').on('load', function () {
+        $('#loading').hide();
+    });
+    var goBack = document.getElementById("goBack");
+    var form = document.getElementById('myForm');
+    function logClick() {
+        goBack.style.borderRadius = '50%';
+        goBack.style.backgroundColor = 'red';
+        form.submit();
+    }
+</script>
+<script src="{{ url_for('static', filename='js/updateFile.js') }}"></script>
+{% endblock %}

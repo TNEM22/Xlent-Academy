@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Manage Files{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manageFile.css') }}" />
+<!-- <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="loading">
+    <div id="loading-image" class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>Loading...</div>
+</div>
+<div class="div-container">
+    <div style="display: inline-block;">
+        <span class="title">MANAGE FILES</span>
+        <button class="uploadFile" onclick="upload()"><span>+</span> Upload File</button>
+        <form action="/nu" method="post" id='uploadForm'>
+            <input type="hidden" value="upload" id="logback" name="logback">
+        </form>
+
+        <span class="logout" onclick="logClick()">
+            <img id="logout" src="https://img.icons8.com/color/52/000000/power-off-button.png" />
+        </span>
+        <form action="/logout" method="post" id='myForm'></form>
+        <script>
+            $(window).on('load', function () {
+                $('#loading').hide();
+            });
+
+
+            var logout = document.getElementById('logout');
+            var form = document.getElementById('myForm');
+            function logClick() {
+                logout.style.borderRadius = '50%';
+                logout.style.backgroundColor = 'red';
+                form.submit();
+            }
+
+            var uploadForm = document.getElementById('uploadForm')
+            function upload() {
+                uploadForm.submit();
+            }
+            window.history.forward();
+            function noBack() {
+                window.history.forward();
+            }
+        </script>
+    </div>
+    <div class="content-box">
+        <div class="folders">
+            <div class="dropend"></div>
+            <!-- {% for i, std in model %}
+            <div class="dropend">
+                <button type="button" class="btn item-cus dropend-toggle" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown">
+                    STD: {{std}}<sup>th</sup>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li style="margin-right: 5px !important; font-weight: 100 !important;">
+                        STD: {{std}}<sup>th</sup>
+                    </li>
+                    <li><button type="submit" class="dropdown-item"
+                            onclick="document.getElementById('STD').innerHTML='{{std}}'">Physics</button></li>
+                    <li><button type="submit" class="dropdown-item"
+                            onclick="document.getElementById('STD').innerHTML='{{std}}'">Chemistry</button></li>
+                    <li><button type="submit" class="dropdown-item"
+                            onclick="document.getElementById('STD').innerHTML='{{std}}'">Mathematics</button></li>
+                </ul>
+            </div>
+            {% endfor %} -->
+        </div>
+        <hr>
+        <div class="content-main">
+            <div class="ctx-title">
+                <span>
+                    Std: <span id="STD"></span><sup>th</sup>
+                </span>
+                <span style="margin-right: 10px;">
+                    Sub: <span id="SUB"></span><sup>th</sup>
+                </span>
+                <hr>
+            </div>
+            <div class="file-content">
+                <!-- <button class="file-item">Tanmay Eknath Mahale</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block belowBody %}
+<script src="{{ url_for('static', filename='js/manageFile.js') }}"></script>
+{% endblock %}
